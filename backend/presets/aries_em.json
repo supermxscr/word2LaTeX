@@ -1,0 +1,13 @@
+{
+  "id": "aries_em",
+  "name": "Aries Systems (Editorial Manager)",
+  "documentclass": "article",
+  "documentclass_options": [],
+  "packages": ["graphicx", "amsmath", "hyperref", "url", "booktabs"],
+  "bibliography_style": "plain",
+  "use_biber": false,
+  "use_xelatex": false,
+  "image_format": "png",
+  "flat_zip": true,
+  "description": "EM/PM LaTeX submission: single-level zip, no subfolders, filename rules per EM_PM_LaTeX_Guide."
+}
