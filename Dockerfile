@@ -3,15 +3,16 @@
 FROM python:3.11-slim
 ARG CACHEBUST=1
 
+# lmodern = Debian 包名，提供 lmodern.sty
 RUN apt-get update && apt-get install -y --no-install-recommends \
     pandoc \
+    lmodern \
     texlive-latex-base \
     texlive-latex-extra \
     texlive-latex-recommended \
     texlive-fonts-recommended \
     latexmk \
-    && rm -rf /var/lib/apt/lists/* \
-    && kpsewhich lmodern.sty || true
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY backend/requirements.txt .
