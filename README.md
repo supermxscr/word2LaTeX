@@ -37,8 +37,8 @@ npm run dev
 
 ## 部署
 
-- **前端**：Vercel 连接本仓库，根目录选 `frontend`，配置 `NEXT_PUBLIC_API_URL` 为后端地址
-- **后端**：Railway 或 Render 连接本仓库，根目录选 `backend`，使用自带 Dockerfile（内装 Pandoc）；需 TeX Live 时在 Dockerfile 中取消注释 latexmk 相关行；异步任务需提供 Redis 并运行 RQ worker
+- **前端**：Vercel 连接本仓库，根目录选 `frontend`。在 Vercel 的 **Settings → Environment Variables** 中增加 `NEXT_PUBLIC_API_URL` = `https://word2latex.onrender.com`（或你的后端地址），然后重新部署。
+- **后端**：Render 部署后域名为 `https://word2latex.onrender.com`。Railway 或 Render 连接本仓库，根目录选 `backend` 或使用根目录 Dockerfile；需 TeX Live 时在 Dockerfile 中取消注释 latexmk 相关行；异步任务需提供 Redis 并运行 RQ worker。
 
 ## 预设
 
