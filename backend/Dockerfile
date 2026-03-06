@@ -1,14 +1,12 @@
-# Word to LaTeX backend: Pandoc + optional TeX Live for PDF
+# Word to LaTeX backend: Pandoc + TeX Live（支持转换并预览 PDF、ZIP 内带 PDF）
 FROM python:3.11-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     pandoc \
+    texlive-latex-base \
+    texlive-latex-extra \
+    latexmk \
     && rm -rf /var/lib/apt/lists/*
-
-# Optional: uncomment to enable PDF compile in jobs
-# RUN apt-get update && apt-get install -y --no-install-recommends \
-#     texlive-latex-base texlive-latex-extra latexmk \
-#     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY requirements.txt .

@@ -1,9 +1,12 @@
 # 从仓库根目录构建后端（供 Render 等未设置 Root Directory 时使用）
-# 若在 Render 中设置了 Root Directory = backend，会使用 backend/Dockerfile
+# 含 TeX Live，支持「转换并预览 PDF」与 ZIP 内 main.pdf
 FROM python:3.11-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     pandoc \
+    texlive-latex-base \
+    texlive-latex-extra \
+    latexmk \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
