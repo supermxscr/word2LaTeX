@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     pandoc \
     texlive-latex-base \
     texlive-latex-extra \
+    texlive-fonts-recommended \
     latexmk \
     && rm -rf /var/lib/apt/lists/*
 
