@@ -27,8 +27,9 @@ app = FastAPI(
     version="0.1.0",
 )
 
-# CORS：生产环境通过 CORS_ORIGINS 配置（逗号分隔），默认允许本地前端
-_cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000")
+# CORS：通过 CORS_ORIGINS 配置（逗号分隔）；未设置时允许本地 + 生产前端
+_default_origins = "http://localhost:3000,http://127.0.0.1:3000,https://word2-latex.vercel.app"
+_cors_origins = os.getenv("CORS_ORIGINS", _default_origins)
 _origins = [o.strip() for o in _cors_origins.split(",") if o.strip()]
 app.add_middleware(
     CORSMiddleware,
