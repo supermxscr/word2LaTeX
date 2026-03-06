@@ -1,13 +1,17 @@
 # Word to LaTeX backend: Pandoc + TeX Live（支持转换并预览 PDF、ZIP 内带 PDF）
 FROM python:3.11-slim
+# 安装 lmodern 等字体：texlive-latex-recommended 含 Latin Modern，避免缓存可改下方注释
+ARG CACHEBUST=1
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     pandoc \
     texlive-latex-base \
     texlive-latex-extra \
+    texlive-latex-recommended \
     texlive-fonts-recommended \
     latexmk \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && kpsewhich lmodern.sty || true
 
 WORKDIR /app
 COPY requirements.txt .
