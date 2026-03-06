@@ -16,5 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 ENV OUTPUT_PDF_DIR=/tmp/word2latex_pdfs
+ENV PORT=8005
 EXPOSE 8005
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8005"]
+# Render 会注入 PORT，用 shell 形式以读取环境变量
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8005}"]

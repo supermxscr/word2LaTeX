@@ -1,0 +1,12 @@
+# Render Blueprint：后端 Web Service（Docker）
+# 使用方式：Render Dashboard → New → Blueprint → 连 GitHub 选本仓库，会自动读此文件
+services:
+  - type: web
+    name: word2latex-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    envVars:
+      - key: CORS_ORIGINS
+        value: https://word2-latex.vercel.app
+        # 多个前端用逗号分隔，如: https://word2-latex.vercel.app,https://xxx.vercel.app

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import base64
 import io
+import os
 import tempfile
 import zipfile
 from pathlib import Path
@@ -26,14 +27,12 @@ app = FastAPI(
     version="0.1.0",
 )
 
+# CORS：生产环境通过 CORS_ORIGINS 配置（逗号分隔），默认允许本地前端
+_cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000")
+_origins = [o.strip() for o in _cors_origins.split(",") if o.strip()]
 app.add_middleware(
     CORSMiddleware,
-    # 本地开发：Next.js 默认 http://localhost:3000
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ],
-    # 若需要携带 cookie/鉴权再改为 True，并把 allow_origins 改为明确域名列表
+    allow_origins=_origins,
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
